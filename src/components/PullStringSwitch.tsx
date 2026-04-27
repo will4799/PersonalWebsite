@@ -62,6 +62,8 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
   const ropeTwistRef = useRef<SVGPathElement>(null);
   const beadRef = useRef<SVGCircleElement>(null);
   const hitRef = useRef<SVGCircleElement>(null);
+  // Timestamp of last drag-triggered toggle — suppresses bulb-click double-fire
+  const lastDragFireRef = useRef(0);
 
   // ── Simulation step ─────────────────────────────────────────────────────────
   const step = useCallback(() => {
@@ -189,6 +191,7 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
     const pulledSide = Math.abs(d.pinX - d.nx0) >= PULL_H_THRESHOLD;
     if (!d.fired && (pulledDown || pulledSide)) {
       d.fired = true;
+      lastDragFireRef.current = performance.now();
       onToggle();
       // Release drag so the rope snaps back freely
       d.active = false;
@@ -206,6 +209,13 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
     kick();
   }, [kick]);
 
+  // Bulb tap/click — fallback for mobile or users who don't pull the string
+  const onBulbClick = useCallback(() => {
+    // Suppress if a drag-pull just fired within the last 300 ms
+    if (performance.now() - lastDragFireRef.current < 300) return;
+    onToggle();
+  }, [onToggle]);
+
   const isOn = !isDark;
   const initPath = buildPath(nodesRef.current);
 
@@ -219,18 +229,20 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
       aria-pressed={isDark}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {/* Fixed lightbulb — never moves */}
+      {/* Fixed lightbulb — tapping it also toggles (mobile fallback) */}
       <svg
         width="16"
         height="20"
         viewBox="0 0 16 20"
         fill="none"
+        onClick={onBulbClick}
         aria-hidden="true"
         style={{
           filter: isOn ? "drop-shadow(0 0 5px rgba(251,191,36,0.85))" : "none",
           transition: "filter 0.4s ease",
           overflow: "visible",
           display: "block",
+          cursor: "pointer",
         }}
       >
         <circle cx="8" cy="7" r="5.5"
@@ -276,7 +288,7 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
         {/* Hit area — wider than bead, sole receiver of pointer events */}
         <circle ref={hitRef} cx={AX} cy={ROPE_LEN} r={16}
           fill="transparent"
-          style={{ pointerEvents: "all", cursor: "grab" }}
+          style={{ pointerEvents: "all", cursor: "grab", touchAction: "none" }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
