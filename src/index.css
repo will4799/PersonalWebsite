@@ -1,11 +1,32 @@
 @import "tailwindcss";
+
+:root {
+  --surface: #fafaf8;
+  --tile: #f0edeb;
+  --ink: #1a1917;
+  --ink-light: #3a3836;
+  --accent: #e64e03;
+  --accent-light: #f9a66c;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --surface: #111315;
+  --tile: #1a1d20;
+  --ink: #f2f4f7;
+  --ink-light: #c2c8d0;
+  --accent: #ff8a4c;
+  --accent-light: #ffc19a;
+  color-scheme: dark;
+}
+
 @theme {
-  --color-surface: #FAFAF8;
-  --color-tile: #F0EDEB;
-  --color-ink: #1a1917;
-  --color-ink-light: #3a3836;
-  --color-accent: #E64E03;
-  --color-accent-light: #F9A66C;
+  --color-surface: var(--surface);
+  --color-tile: var(--tile);
+  --color-ink: var(--ink);
+  --color-ink-light: var(--ink-light);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
 }
 
 html {
@@ -16,6 +37,7 @@ body {
   background-color: var(--color-surface);
   color: var(--color-ink);
   font-family: ui-sans-serif, system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .name-sweep {
