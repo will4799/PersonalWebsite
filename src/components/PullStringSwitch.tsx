@@ -270,6 +270,7 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
           transform: "translateX(-50%)",
           overflow: "visible",
           pointerEvents: "none",
+          touchAction: "none",
         }}
         aria-hidden="true"
       >
@@ -286,9 +287,9 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
           fill="currentColor" opacity="0.65"
           style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.3))" }} />
         {/* Hit area — wider than bead, sole receiver of pointer events */}
-        <circle ref={hitRef} cx={AX} cy={ROPE_LEN} r={16}
+        <circle ref={hitRef} cx={AX} cy={ROPE_LEN} r={24}
           fill="transparent"
-          style={{ pointerEvents: "all", cursor: "grab", touchAction: "none" }}
+          style={{ pointerEvents: "all", cursor: "grab" }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
