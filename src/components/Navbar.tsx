@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PullStringSwitch from "./PullStringSwitch";
 
 type NavbarProps = {
   theme: "light" | "dark";
@@ -31,27 +32,7 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
             </a>
           </li>
           <li>
-            <button
-              type="button"
-              onClick={onToggleTheme}
-              role="switch"
-              aria-checked={isDarkMode}
-              aria-label="Toggle dark mode"
-              title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-              className="inline-flex items-center gap-2 text-xs font-medium text-ink hover:text-accent transition-colors"
-            >
-              <span
-                aria-hidden="true"
-                className={`relative inline-flex h-5 w-9 rounded-full border border-ink/30 bg-tile transition-colors duration-300 ${isDarkMode ? "bg-accent/50" : "bg-tile"}`}
-              >
-                <span
-                  className={`absolute top-0.5 h-3.5 w-3.5 rounded-full bg-ink transition-all duration-300 ${isDarkMode ? "left-[18px]" : "left-0.5"}`}
-                />
-              </span>
-              <span aria-hidden="true" className="min-w-9 text-left">
-                {isDarkMode ? "Dark" : "Light"}
-              </span>
-            </button>
+            <PullStringSwitch isDark={isDarkMode} onToggle={onToggleTheme} />
           </li>
         </ul>
       </nav>
