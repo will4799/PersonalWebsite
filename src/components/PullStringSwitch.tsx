@@ -143,26 +143,42 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
     if (!rafRef.current) rafRef.current = requestAnimationFrame(loop);
   }, [loop]);
 
-  // ── Scroll → horizontal impulse with noise ───────────────────────────────────
+  // ── Scroll → horizontal impulse with noise (wheel + mobile scroll) ───────────
   useEffect(() => {
-    const onWheel = (e: WheelEvent) => {
-      // Only react when the page can actually scroll in the wheel direction
-      const atTop = window.scrollY === 0 && e.deltaY < 0;
-      const atBottom =
-        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1 &&
-        e.deltaY > 0;
-      if (atTop || atBottom) return;
-
+    const applyImpulse = (deltaY: number) => {
       const ns = nodesRef.current;
-      const h = e.deltaY * SCROLL_H;
+      const h = deltaY * SCROLL_H;
       for (let i = 1; i < N; i++) {
         ns[i].px -= h + (Math.random() - 0.5) * SCROLL_NX * 2;
         ns[i].py += (Math.random() - 0.5) * SCROLL_NY * 2;
       }
       kick();
     };
+
+    // Desktop — wheel events carry deltaY directly
+    const onWheel = (e: WheelEvent) => {
+      const atTop = window.scrollY === 0 && e.deltaY < 0;
+      const atBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1 &&
+        e.deltaY > 0;
+      if (atTop || atBottom) return;
+      applyImpulse(e.deltaY);
+    };
+
+    // Mobile — derive deltaY from consecutive scroll positions
+    let lastScrollY = window.scrollY;
+    const onScroll = () => {
+      const deltaY = window.scrollY - lastScrollY;
+      lastScrollY = window.scrollY;
+      if (deltaY !== 0) applyImpulse(deltaY);
+    };
+
     window.addEventListener("wheel", onWheel, { passive: true });
-    return () => window.removeEventListener("wheel", onWheel);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, [kick]);
 
   useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); }, []);
