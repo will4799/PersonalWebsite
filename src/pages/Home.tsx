@@ -17,7 +17,7 @@ export default function Home() {
             WILL_HERE
           </h1>
           <p className="mt-4 text-2xl sm:text-3xl font-light text-ink-light">
-            Software Engineer & Hobbyist Alcoholic
+            Software Engineer - Data Analyst
           </p>
           <p className="mt-6 max-w-xl text-ink-light leading-relaxed">
             This is a place to store and display the various projects I&apos;ve worked on.

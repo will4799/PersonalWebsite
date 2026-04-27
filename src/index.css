@@ -17,3 +17,17 @@ body {
   color: var(--color-ink);
   font-family: ui-sans-serif, system-ui, sans-serif;
 }
+
+.name-sweep {
+  background-image: linear-gradient(to right, var(--color-accent) 50%, var(--color-ink) 50%);
+  background-size: 200% 100%;
+  background-position: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: background-position 0.4s ease;
+}
+
+.name-sweep:hover {
+  background-position: 0%;
+}
