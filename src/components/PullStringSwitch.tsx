@@ -9,7 +9,7 @@ type Props = {
 const N = 10;                       // number of nodes  (9 segments)
 const ROPE_LEN = 48;                // total rest length in px
 const SEG = ROPE_LEN / (N - 1);    // per-segment rest length
-const PULL_THRESHOLD = 26;         // extra downward pull beyond ROPE_LEN to fire toggle
+const PULL_THRESHOLD = 40;         // extra downward pull beyond ROPE_LEN to fire toggle
 const PULL_H_THRESHOLD = 40;       // horizontal drag distance to fire toggle
 const GRAVITY = 0.28;              // downward acceleration per frame
 const VEL_DAMP = 0.978;            // velocity scalar per frame  (< 1 = damping)
