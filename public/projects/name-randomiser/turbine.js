@@ -26,7 +26,6 @@ class Turbine {
     this.maxVal = CAPACITY*random(7500, 10000);
     this.seed = floor(random(999999999));
     this.finished = false;
-    this.birthFrame = frameCount;
   }
   
   update() {
@@ -89,7 +88,7 @@ class Turbine {
     if (!this.finished) {
       this.angle += noiseOffset;
     }
-    this.startUpFactor = min(lerp(0, 1, STARTUPSPEED * (frameCount - this.birthFrame)), 1);
+    this.startUpFactor = min(this.startUpFactor + STARTUPSPEED, 1);
   }
   
   drawBattery() {
