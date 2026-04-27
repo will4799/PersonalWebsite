@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// Utility function to generate the reveal class for the name animation
 const revealClass = (maxW: string) =>
   `inline-block align-bottom overflow-hidden whitespace-nowrap max-w-0 group-hover:${maxW} transition-all duration-300 ease-in-out`;
 
