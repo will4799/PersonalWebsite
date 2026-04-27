@@ -13,7 +13,7 @@ export const projects: Project[] = [
     title: "Personal Website",
     description: "This very site — a developer portfolio built with Vite, React, and Tailwind CSS.",
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    repoUrl: "https://github.com/",
+    repoUrl: "https://github.com/will4799/PersonalWebsite",
   },
   {
     id: 2,
