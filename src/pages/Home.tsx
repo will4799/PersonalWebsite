@@ -89,19 +89,19 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-ink mb-4">Get In Touch</h2>
           <p className="text-ink-light max-w-md mx-auto mb-8">
-            Have a project in mind or just want to say hello? My inbox is always open.
+            Flick me an email below or find me on GitHub and LinkedIn.
           </p>
           <a
-            href="mailto:you@example.com"
+            href="mailto:wherewini4799@gmail.com"
             className="inline-block px-8 py-3 bg-accent hover:bg-accent-light text-white rounded-lg font-medium transition-colors"
           >
             Say Hello
           </a>
           <div className="mt-10 flex justify-center gap-6 text-ink-light text-sm">
-            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+            <a href="https://github.com/will4799" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
               GitHub
             </a>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+            <a href="https://linkedin.com/in/william-herewini-59a7ba1b1/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
               LinkedIn
             </a>
           </div>
