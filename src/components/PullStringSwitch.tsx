@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from "react";
 
 type Props = {
   isDark: boolean;
-  onToggle: (originX: number, originY: number) => void;
+  onToggle: () => void;
 };
 
 // ── Rope physics ──────────────────────────────────────────────────────────────
@@ -47,7 +47,6 @@ function buildPath(ns: RNode[]): string {
 export default function PullStringSwitch({ isDark, onToggle }: Props) {
   const nodesRef = useRef<RNode[]>(initNodes());
   const rafRef = useRef(0);
-  const bulbRef = useRef<SVGSVGElement>(null);
 
   // Drag state — all mutable, never causes renders
   const drag = useRef({
@@ -185,15 +184,6 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
   useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); }, []);
 
   // ── Pointer handlers ──────────────────────────────────────────────────────────
-
-  // Resolve bulb centre in viewport coords and call onToggle with the origin
-  const fireToggle = useCallback(() => {
-    const rect = bulbRef.current?.getBoundingClientRect();
-    const cx = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
-    const cy = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
-    onToggle(cx, cy);
-  }, [onToggle]);
-
   const onPointerDown = useCallback((e: React.PointerEvent<SVGCircleElement>) => {
     e.preventDefault();
     const last = nodesRef.current[N - 1];
@@ -218,14 +208,14 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
     if (!d.fired && (pulledDown || pulledSide)) {
       d.fired = true;
       lastDragFireRef.current = performance.now();
-      fireToggle();
+      onToggle();
       // Release drag so the rope snaps back freely
       d.active = false;
       if (hitRef.current) hitRef.current.style.cursor = "grab";
       e.currentTarget.releasePointerCapture(e.pointerId);
       kick();
     }
-  }, [fireToggle]);
+  }, [onToggle]);
 
   const onPointerUp = useCallback(() => {
     const d = drag.current;
@@ -239,8 +229,8 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
   const onBulbClick = useCallback(() => {
     // Suppress if a drag-pull just fired within the last 300 ms
     if (performance.now() - lastDragFireRef.current < 300) return;
-    fireToggle();
-  }, [fireToggle]);
+    onToggle();
+  }, [onToggle]);
 
   const isOn = !isDark;
   const initPath = buildPath(nodesRef.current);
@@ -257,7 +247,6 @@ export default function PullStringSwitch({ isDark, onToggle }: Props) {
     >
       {/* Fixed lightbulb — tapping it also toggles (mobile fallback) */}
       <svg
-        ref={bulbRef}
         width="16"
         height="20"
         viewBox="0 0 16 20"
