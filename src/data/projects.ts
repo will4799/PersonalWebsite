@@ -5,6 +5,7 @@ export interface Project {
   tags: string[];
   repoUrl?: string;
   liveUrl?: string;
+  liveUrlInternal?: boolean;
 }
 
 export const projects: Project[] = [
@@ -35,5 +36,6 @@ export const projects: Project[] = [
     description: "A 3D Gaussian Splat experience.",
     tags: ["Gaussian Splatting", "PlayCanvas", "SuperSplat"],
     liveUrl: "/projects/backyard-gs-view",
+    liveUrlInternal: true,
   },
 ];

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -29,14 +30,23 @@ export default function ProjectCard({ project }: { project: Project }) {
           </a>
         )}
         {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink-light hover:text-accent transition-colors"
-          >
-            Live →
-          </a>
+          project.liveUrlInternal ? (
+            <Link
+              to={project.liveUrl}
+              className="text-ink-light hover:text-accent transition-colors"
+            >
+              Live →
+            </Link>
+          ) : (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink-light hover:text-accent transition-colors"
+            >
+              Live →
+            </a>
+          )
         )}
       </div>
     </div>
