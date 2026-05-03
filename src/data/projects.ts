@@ -19,14 +19,21 @@ export const projects: Project[] = [
     id: 2,
     title: "Particle Playground (p5.js)",
     description: "A lightweight interactive particle simulation built with vanilla JavaScript and p5.js.",
-    tags: ["JavaScript", "p5.js", "Creative Coding"],
+    tags: ["JavaScript", "p5.js"],
     liveUrl: "/projects/p5-particles/index.html",
   },
   {
     id: 3,
     title: "Name Randomiser (p5.js)",
     description: "An interactive name randomiser built with vanilla JavaScript and p5.js.",
-    tags: ["JavaScript", "p5.js", "Creative Coding"],
+    tags: ["JavaScript", "p5.js"],
     liveUrl: "/projects/name-randomiser/index.html",
+  },
+  {
+    id: 4,
+    title: "Backyard GS (Gaussian Splatting)",
+    description: "A 3D Gaussian Splat experience.",
+    tags: ["Gaussian Splatting", "PlayCanvas", "SuperSplat"],
+    liveUrl: "/projects/backyard-gs-scene",
   },
 ];

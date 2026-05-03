@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import ScrollToHash from "@/components/ScrollToHash";
 import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
+import BackyardScene from "@/pages/BackyardScene";
 
 type Theme = "light" | "dark";
 
@@ -30,8 +31,11 @@ export default function App() {
     window.localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
 
-  const handleToggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+  const handleToggleTheme = (_originX: number, _originY: number) => {
+    const nextTheme: Theme = theme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    setTheme(nextTheme);
   };
 
   return (
@@ -43,6 +47,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/backyard-gs-scene" element={<BackyardScene />} />
           </Routes>
         </main>
       </div>
