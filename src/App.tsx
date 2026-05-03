@@ -31,11 +31,8 @@ export default function App() {
     window.localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
 
-  const handleToggleTheme = (_originX: number, _originY: number) => {
-    const nextTheme: Theme = theme === "light" ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", nextTheme);
-    window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-    setTheme(nextTheme);
+  const handleToggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
 
   return (
