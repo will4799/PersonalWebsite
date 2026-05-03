@@ -3,7 +3,7 @@ import PullStringSwitch from "./PullStringSwitch";
 
 type NavbarProps = {
   theme: "light" | "dark";
-  onToggleTheme: (originX: number, originY: number) => void;
+  onToggleTheme: () => void;
 };
 
 export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
