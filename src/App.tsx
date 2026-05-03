@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import ScrollToHash from "@/components/ScrollToHash";
 import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
+import BackyardScene from "@/pages/BackyardScene";
 
 type Theme = "light" | "dark";
 
@@ -30,42 +31,11 @@ export default function App() {
     window.localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
 
-  const handleToggleTheme = (originX: number, originY: number) => {
+  const handleToggleTheme = (_originX: number, _originY: number) => {
     const nextTheme: Theme = theme === "light" ? "dark" : "light";
-
-    const apply = () => {
-      document.documentElement.setAttribute("data-theme", nextTheme);
-      window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-      setTheme(nextTheme);
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const vt = document as any;
-    if (!vt.startViewTransition || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      apply();
-      return;
-    }
-
-    const transition = vt.startViewTransition(apply);
-    transition.ready.then(() => {
-      const maxRadius = Math.hypot(
-        Math.max(originX, window.innerWidth - originX),
-        Math.max(originY, window.innerHeight - originY)
-      );
-      document.documentElement.animate(
-        {
-          clipPath: [
-            `circle(0px at ${originX}px ${originY}px)`,
-            `circle(${maxRadius}px at ${originX}px ${originY}px)`,
-          ],
-        },
-        {
-          duration: 600,
-          easing: "ease-in",
-          pseudoElement: "::view-transition-new(root)",
-        }
-      );
-    });
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    setTheme(nextTheme);
   };
 
   return (
@@ -77,6 +47,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/backyard-gs-scene" element={<BackyardScene />} />
           </Routes>
         </main>
       </div>

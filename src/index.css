@@ -54,8 +54,4 @@ body {
   background-position: 0%;
 }
 
-/* View-transition: disable default crossfade so our clip-path circle reveal plays cleanly */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-}
+
