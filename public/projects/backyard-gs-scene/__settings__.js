@@ -2,11 +2,11 @@ window.ASSET_PREFIX = "";
 window.SCRIPT_PREFIX = "";
 window.SCENE_PATH = "2485965.json";
 window.CONTEXT_OPTIONS = {
-    'antialias': true,
+    'antialias': false,
     'alpha': false,
     'preserveDrawingBuffer': false,
     'deviceTypes': [`webgl2`, `webgl1`],
-    'powerPreference': "high-performance"
+    'powerPreference': "default"
 };
 window.SCRIPTS = [ 287547428, 287547736 ];
 window.CONFIG_FILENAME = "config.json";
