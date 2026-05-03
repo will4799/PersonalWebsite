@@ -3,7 +3,7 @@ import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
 
 export default function Home() {
-  const featured = projects.slice(0, 3);
+  const featured = projects.slice(-3).reverse();
 
   return (
     <>

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import ScrollToHash from "@/components/ScrollToHash";
 import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
+import BackyardScene from "@/pages/BackyardScene";
 
 type Theme = "light" | "dark";
 
@@ -43,6 +44,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/backyard-gs-scene" element={<BackyardScene />} />
           </Routes>
         </main>
       </div>
