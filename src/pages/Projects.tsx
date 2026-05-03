@@ -10,7 +10,7 @@ export default function ProjectsPage() {
           A collection of things I&apos;ve built — from side projects to open-source work.
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {[...projects].reverse().map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>

@@ -44,7 +44,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/backyard-gs-scene" element={<BackyardScene />} />
+            <Route path="/projects/backyard-gs-view" element={<BackyardScene />} />
           </Routes>
         </main>
       </div>
