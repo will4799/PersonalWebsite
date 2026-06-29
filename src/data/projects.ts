@@ -32,7 +32,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: "Backyard GS (Gaussian Splatting)",
+    title: "Backyard 3D Scene (Gaussian Splatting)",
     description: "A 3D Gaussian Splat experience.",
     tags: ["Gaussian Splatting", "PlayCanvas", "SuperSplat"],
     liveUrl: "/projects/backyard-gs-view",
