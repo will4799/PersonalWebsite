@@ -5,6 +5,7 @@ import ScrollToHash from "@/components/ScrollToHash";
 import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
 import BackyardScene from "@/pages/BackyardScene";
+import BackyardSceneAnnotated from "./pages/BackyardSceneAnnotated";
 
 type Theme = "light" | "dark";
 
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/backyard-gs-view" element={<BackyardScene />} />
+            <Route path="/projects/backyard-gs-scene-annotated-view" element={<BackyardSceneAnnotated />} />
           </Routes>
         </main>
       </div>

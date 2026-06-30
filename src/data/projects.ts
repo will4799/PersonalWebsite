@@ -38,4 +38,12 @@ export const projects: Project[] = [
     liveUrl: "/projects/backyard-gs-view",
     liveUrlInternal: true,
   },
+  {
+    id: 5,
+    title: "Backyard 3D Scene (Annotated)",
+    description: "A 3D Gaussian Splat experience with annotations. Proof of concept for a React + PlayCanvas integration, with a side panel that displays metadata and time series data for selected assets.",
+    tags: ["Gaussian Splatting", "PlayCanvas", "SuperSplat"],
+    liveUrl: "/projects/backyard-gs-scene-annotated-view",
+    liveUrlInternal: true,
+  }
 ];
