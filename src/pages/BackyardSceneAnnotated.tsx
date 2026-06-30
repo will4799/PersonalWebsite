@@ -69,7 +69,7 @@ export default function BackyardSceneAnnotated() {
   const selectedObject = objects.find(o => o.id === selectedObjectId);
 
   return (
-    <div className="relative h-[calc(100vh-3.5rem)] w-full">
+    <div className="relative pt-0 h-screen w-full">
 
       {/* The PlayCanvas iframe */}
       <iframe
